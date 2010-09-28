@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+import os,sys,ConfigParser
+import MySQLdb
+from time import time,strftime,gmtime
+
+'''
+This utility is designed to be run as a crojob, it will check for and optimize mySQL myISAM tables based on the configuration file in /etc/myisam_defrag/myisam_defrag.conf
+__author__="David Busby"
+__copyright__="David Busby Saiweb.co.uk"
+__license__="GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form." 
+'''
+
+def log(log,str):
+    str = '[%s] %s\n' %((strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())),str)
+    f = file(log, 'a+')
+    f.write(str)
+    f.close()
+
+def main():
+        if not os.path.isfile('/etc/myisam_defrag/myisam_defrag.conf'):
+                print 'Missing configuration file!'
+                sys.exit(1)
+        else:
+                cfg = ConfigParser.ConfigParser()
+                cfg.read('/etc/myisam_defrag/myisam_defrag.conf')
+                logfile =       cfg.get('myisam_defrag','logfile')
+                login_conf =    cfg.get('myisam_defrag','login_conf')
+                frag_thresh =   cfg.getint('myisam_defrag','frag_thresh')
+
+                if not os.path.isfile(login_conf):
+                        print 'login_conf does not exist!',login_conf
+                        sys.exit(1)
+                else:
+                        cfg.read(login_conf)
+                        usr = cfg.get('client','user')
+                        pwd = cfg.get('client','password')
+                        db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
+                        cursor = db.cursor()
+                        sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE IS NOT NULL AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
+                        cursor.execute(sql)
+                        res = cursor.fetchall()
+                        torun = set()
+                        for row in res:
+                                sql = 'optimize table %s' % row[0]
+                                log(logfile,'%s found to be %s%% fragmented optimizing' % (row[0],(row[1]*100)))
+                                cursor.execute(sql)
+if __name__ == '__main__':
+        main()

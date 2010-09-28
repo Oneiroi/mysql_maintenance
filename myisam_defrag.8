@@ -1,0 +1,27 @@
+.\" By David Busby <d.busby@saiweb.co.uk>
+.\" Changelog
+.\"
+.\" - 28/09/10 - Created
+.\"
+.\"
+.TH myisam_defrag 8 "September 28, 2010"
+.LO 8
+.SH NAME
+myisam_defrag \- A utility script by D.Busby
+.SH AUTHOR
+David Busby <david.busby@saiweb.co.uk>
+.SH SYNOPSIS
+A utility script by D.Busby written to perform myisam defragmentation
+.br
+This utility uses SQL to retrieve a list of tables that exceed the predefined threshold, and then run an optimize upone them.
+.SH DESCRIPTION
+This utility script can be found in \fB/usr/bin/myisam_defrag\fR
+.br
+The configuration file in /etc/myisam_defrag/myisam_defrag.conf
+.br
+.SH EXAMPLES
+Crontab installation:
+.br
+*/5 * * * * root /usr/bin/myisam_defrag
+.br
+
