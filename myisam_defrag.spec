@@ -3,13 +3,12 @@ Version:        0.2
 Release:        1%{?dist}
 Summary:        mySQL myisam defragmentation tool, can be used to automate defragmentation of myisam tables.
 
-Group:          
+Group:        	Applications/System 
 License:        GNU v3
 URL:            http://svn.saiweb.co.uk/branches/myisam_defrag
 Source0:        http://svn.saiweb.co.uk/branches/myisam_defrag/tags/0.2/myisam_defrag-0.2.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildRequires:  
 Requires:       python,MySQL-python
 
 %description
