@@ -40,7 +40,6 @@ def main():
                         sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE IS NOT NULL AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
                         cursor.execute(sql)
                         res = cursor.fetchall()
-                        torun = set()
                         for row in res:
                                 sql = 'optimize table %s' % row[0]
                                 log(logfile,'%s found to be %s%% fragmented optimizing' % (row[0],(row[1]*100)))
