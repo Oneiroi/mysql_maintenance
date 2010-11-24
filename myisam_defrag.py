@@ -67,7 +67,7 @@ def main():
 
                         db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
                         cursor = db.cursor()
-                        sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE IS NOT NULL AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
+                        sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE = 'MyISAM' AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
                         cursor.execute(sql)
                         res = cursor.fetchall()
 			i = 0
