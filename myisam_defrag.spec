@@ -26,7 +26,7 @@ it can be used as a standalone run when required app, or setup to run from the c
 %install
 [[ -d "$RPM_BUILD_ROOT" ]] && rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT%{_bindir}
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/myisam_defrag
+mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man7
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man8
 

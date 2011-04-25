@@ -30,7 +30,7 @@ def main():
 		print str(err)
 		usage()
 
-	cnf = '/etc/myisam_defrag/myisam_defrag.conf'
+	cnf = '/etc/myisam_defrag.conf'
 	for o, a in opts:
 		if o in ('-c','--config'):
 			cnf = a
