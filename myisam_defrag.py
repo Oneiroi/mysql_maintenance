@@ -19,7 +19,7 @@ def log(log,str):
     f.close()
 
 def usage():
-	print 'Usage:',sys.argv[0],'-c /etc/myisam_defrag/myisam_defrag.conf'
+	print 'Usage:',sys.argv[0],'-c /etc/myisam_defrag.conf'
 	print 'Note: -c is an optional overide, assumes default location if missing'
 	sys.exit(0)
 
