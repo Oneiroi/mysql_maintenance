@@ -52,32 +52,32 @@ def main():
 		print e
 		sys.exit(1)
 
-                if not os.path.isfile(login_conf):
-                        print 'login_conf does not exist!',login_conf
-                        sys.exit(1)
-                else:
-                        cfg.read(login_conf)
+        if not os.path.isfile(login_conf):
+                print 'login_conf does not exist!',login_conf
+                sys.exit(1)
+        else:
+                cfg.read(login_conf)
 		try:
-                         usr = cfg.get('client','user')
-                         pwd = cfg.get('client','password')
+                	usr = cfg.get('client','user')
+                	pwd = cfg.get('client','password')
 		except (ConfigParser.NoOptionError or ConfigParser.NoSectionError), e:
 			print 'Missing a required configuration option'
-                        print e
-                        sys.exit(1)
+                	print e
+                	sys.exit(1)
 
-                        db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
-                        cursor = db.cursor()
-                        sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE = 'MyISAM' AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
+                db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
+                cursor = db.cursor()
+                sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME, (DATA_FREE/DATA_LENGTH) AS FRAG_RATIO FROM TABLES WHERE ENGINE = 'MyISAM' AND DATA_LENGTH >=(1024*1024) AND (DATA_FREE/DATA_LENGTH) >=%s" % (1.00*frag_thresh/100)
+                cursor.execute(sql)
+                res = cursor.fetchall()
+		i = 0
+                for row in res:
+			i+=1
+                        sql = 'optimize table %s' % row[0]
+                        log(logfile,'%s found to be %s%% fragmented optimizing' % (row[0],(row[1]*100)))
                         cursor.execute(sql)
-                        res = cursor.fetchall()
-			i = 0
-                        for row in res:
-				i+=1
-                                sql = 'optimize table %s' % row[0]
-                                log(logfile,'%s found to be %s%% fragmented optimizing' % (row[0],(row[1]*100)))
-                                cursor.execute(sql)
-			if i == 0:
-				log(logfile,'No tables to optimize on this run, try lowering your fragmentation threashold in %s?'%cnf)
+		if i == 0:
+			log(logfile,'No tables to optimize on this run, try lowering your fragmentation threashold in %s?'%cnf)
 if __name__ == '__main__':
         main()
 
