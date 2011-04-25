@@ -8,7 +8,7 @@ from time import time,strftime,gmtime
 This utility is designed to be run as a crojob, it will check for and optimize mySQL myISAM tables based on the configuration file in /etc/myisam_defrag/myisam_defrag.conf
 __author__="David Busby"
 __copyright__="David Busby Saiweb.co.uk"
-__license__="GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form." 
+__license__="GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form."
 __version__="0.2"
 '''
 
@@ -36,34 +36,34 @@ def main():
 			cnf = a
 		else:
 			assert False,"Unsupported option"
-	
+
         if not os.path.isfile(cnf):
                 print 'Configuration file does not exist!',cnf
                 sys.exit(1)
         else:
                 cfg = ConfigParser.ConfigParser()
                 cfg.read(cnf)
-		try:
-                	logfile =       cfg.get('myisam_defrag','logfile')
-                	login_conf =    cfg.get('myisam_defrag','login_conf')
-                	frag_thresh =   cfg.getint('myisam_defrag','frag_thresh')
-		except (ConfigParser.NoOptionError or ConfigParser.NoSectionError), e:
-			print 'Missing a required configuration option'
-			print e
-			sys.exit(1)
+	try:
+                 logfile = cfg.get('myisam_defrag','logfile')
+                 login_conf = cfg.get('myisam_defrag','login_conf')
+                 frag_thresh = cfg.getint('myisam_defrag','frag_thresh')
+	except (ConfigParser.NoOptionError or ConfigParser.NoSectionError), e:
+		print 'Missing a required configuration option'
+		print e
+		sys.exit(1)
 
                 if not os.path.isfile(login_conf):
                         print 'login_conf does not exist!',login_conf
                         sys.exit(1)
                 else:
                         cfg.read(login_conf)
-			try:
-                        	usr = cfg.get('client','user')
-                        	pwd = cfg.get('client','password')
-			except (ConfigParser.NoOptionError or ConfigParser.NoSectionError), e:
-				print 'Missing a required configuration option'
-                        	print e
-                        	sys.exit(1)
+		try:
+                         usr = cfg.get('client','user')
+                         pwd = cfg.get('client','password')
+		except (ConfigParser.NoOptionError or ConfigParser.NoSectionError), e:
+			print 'Missing a required configuration option'
+                        print e
+                        sys.exit(1)
 
                         db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
                         cursor = db.cursor()
@@ -80,3 +80,4 @@ def main():
 				log(logfile,'No tables to optimize on this run, try lowering your fragmentation threashold in %s?'%cnf)
 if __name__ == '__main__':
         main()
+
