@@ -6,7 +6,7 @@ Summary: mySQL myisam defragmentation tool, can be used to automate defragmentat
 Group: Applications/System
 License: GNU v3
 URL: https://github.com/Oneiroi/myisam_defrag
-Source0: myisam_defrag-0.2.tgz
+Source0: https://github.com/downloads/Oneiroi/myisam_defrag/myisam_defrag-0.2.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
