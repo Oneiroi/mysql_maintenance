@@ -54,7 +54,7 @@ def main():
 
                 db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
                 cursor = db.cursor()
-                sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA NOT IN ('information_schema','mysql','test') AND ENGINE IS NOT NULL;"
+                sql="SELECT CONCAT('`',TABLE_SCHEMA,'`','.','`',TABLE_NAME,'`') AS TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA NOT IN ('information_schema','mysql','test') AND ENGINE IS NOT NULL;"
                 cursor.execute(sql)
                 res = cursor.fetchall()
 		i = 0
@@ -64,7 +64,7 @@ def main():
                         try:
 				cursor.execute(sql)
 				ares = cursor.fetchall()
-                        	log(logfile,'Analyze complete for %s returned %s %s' %(row[0],ares[0][0],ares[0][1]))
+                        	log(logfile,'Analyze complete for %s returned %s' %(row[0],ares))
 			except:
 				log(logfile,'Optimize for %s failed SQL(%s)'%(row[0],sql))
 if __name__ == '__main__':
