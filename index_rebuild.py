@@ -61,9 +61,12 @@ def main():
                 for row in res:
                         sql = 'analyze table %s' % row[0]
                         log(logfile,'Analyzing table %s' % (row[0]))
-                        cursor.execute(sql)
-			ares = cursor.fetchall()
-			log(logfile,'Analyze complete for %s returned %s %s' %(row[0],ares[0][0],ares[0][1]))
+                        try:
+				cursor.execute(sql)
+				ares = cursor.fetchall()
+                        	log(logfile,'Analyze complete for %s returned %s %s' %(row[0],ares[0][0],ares[0][1]))
+			except:
+				log(logfile,'Optimize for %s failed SQL(%s)'%(row[0],sql))
 if __name__ == '__main__':
         main()
 
