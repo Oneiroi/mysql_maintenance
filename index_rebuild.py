@@ -54,7 +54,7 @@ def main():
 
                 db = MySQLdb.connect(host="localhost",user=usr,passwd=pwd,db="information_schema")
                 cursor = db.cursor()
-                sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM TABLES;"
+                sql="SELECT CONCAT(TABLE_SCHEMA,'.',TABLE_NAME) AS TABLE_NAME FROM TABLES WHERE TABLE_SCHEMA NOT IN ('information_schema','mysql','test');"
                 cursor.execute(sql)
                 res = cursor.fetchall()
 		i = 0
