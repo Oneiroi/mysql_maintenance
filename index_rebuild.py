@@ -60,10 +60,10 @@ def main():
 		i = 0
                 for row in res:
                         sql = 'analyze table %s' % row[0]
-                        log(logfile,'Analyzing table %s' % (row[0])
+                        log(logfile,'Analyzing table %s' % (row[0]))
                         cursor.execute(sql)
-			ares = cursore.fetchall()
-			log(logfile,'Analyze complete for %s returned %s %s' %(row[0],ares[0][0],ares[0][1])
+			ares = cursor.fetchall()
+			log(logfile,'Analyze complete for %s returned %s %s' %(row[0],ares[0][0],ares[0][1]))
 if __name__ == '__main__':
         main()
 
