@@ -211,5 +211,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('myisam_defrag', 'myisam_defrag', u'enumerate and defragment myISAM engine mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8)
+    ('myisam_defrag', 'myisam_defrag', u'enumerate and defragment myISAM engine mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8),
+    ('myisam_defrag.conf', 'myisam_defrag.conf', u'configuration file for myisam_defrag.py',[u'David Busby <d.busby@saiweb.co.uk>'], 7),
+    ('index_rebuild', 'index_rebuild', u'enumerate and rebuild indexs on mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8)
 ]

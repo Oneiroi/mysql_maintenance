@@ -16,8 +16,6 @@ myisam_defrag.py will run by default by loading the configuration file from /etc
 	**-c, --config**
 		Load this configuration file 
 
-logs will be written to /var/log/myisam_defrag.log
-
 EXAMPLES
 --------
 
@@ -28,3 +26,7 @@ REPORTING BUGS
 
 Please raise an issue @ github https://github.com/Oneiroi/mysql_maintenance/issues/new
 
+SEE ALSO
+--------
+
+myisam_defrag.conf(7)
