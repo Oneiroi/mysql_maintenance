@@ -40,8 +40,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'myisam_defrag'
-copyright = u'2011, David Busby <d.busby@saiweb.co.uk>'
+project = u'myisam_maintenance'
+copyright = u'2010,2011, David Busby <d.busby@saiweb.co.uk> Licensed under GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -164,7 +164,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'myisam_defragdoc'
+htmlhelp_basename = 'myisam_maintenancedoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'myisam_defragdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'myisam_defrag.tex', u'myisam\\_defrag Documentation',
+  ('index', 'myisam_maintenance.tex', u'myisam\\_maintenance Documentation',
    u'David Busby \\textless{}d.busby@saiweb.co.uk\\textgreater{}', 'manual'),
 ]
 
@@ -211,6 +211,5 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'myisam_defrag', u'myisam_defrag Documentation',
-     [u'David Busby <d.busby@saiweb.co.uk>'], 1)
+    ('myisam_defrag', 'myisam_defrag', u'enumerate and defragment myISAM engine mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8)
 ]
