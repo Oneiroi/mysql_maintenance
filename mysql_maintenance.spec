@@ -1,21 +1,20 @@
-Name: myisam_defrag
+Name: mysql_maintenance
 Version: 0.2
-Release: 1%{?dist}
-Summary: mySQL myisam defragmentation tool, can be used to automate defragmentation of myisam tables.
-
+Release: 2%{?dist}
+Summary: mySQL maintenance tools.
 Group: Applications/System
 License: GNU v3
-URL: https://github.com/Oneiroi/myisam_defrag
-Source0: https://github.com/downloads/Oneiroi/myisam_defrag/myisam_defrag-0.2.tgz
+URL: https://github.com/Oneiroi/mysql_maintenance
+Source0: https://github.com/downloads/Oneiroi/mysql_maintenance/%{name}-%{version}-%{release}.tgz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
 Requires: python,MySQL-python
+Provides: myisam_defrag
 
 %description
 
-This tool was created to aid in the automated defragmentation of myisam engine tables, configurations are stored in the myisam_defrag.conf file
-it can be used as a standalone run when required app, or setup to run from the crontab
+Provides tools to aid in the maintenance of MySQL servers.
 
 %prep
 
@@ -30,7 +29,7 @@ mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man7
 mkdir -p $RPM_BUILD_ROOT%{_mandir}/man8
 
-install -D $RPM_BUILD_DIR/%{name}-%{version}/myisam_defrag.py $RPM_BUILD_ROOT%{_bindir}/myisam_defrag.py
+install -D $RPM_BUILD_DIR/%{name}-%{version}/myisam_defrag.py $RPM_BUILD_ROOT%{_bindir}/myisam_defrag
 install -D $RPM_BUILD_DIR/%{name}-%{version}/myisam_defrag.conf.7 $RPM_BUILD_ROOT%{_mandir}/man7/myisam_defrag.conf.7
 install -D $RPM_BUILD_DIR/%{name}-%{version}/myisam_defrag.8 $RPM_BUILD_ROOT%{_mandir}/man8/myisam_defrag.8
 install -D $RPM_BUILD_DIR/%{name}-%{version}/myisam_defrag.conf $RPM_BUILD_ROOT%{_sysconfdir}/myisam_defrag.conf
@@ -41,14 +40,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/myisam_defrag.py
+%attr(700, root, root) %{_bindir}/myisam_defrag.py
 %doc %{_mandir}/man7/myisam_defrag.conf.7.gz
 %doc %{_mandir}/man8/myisam_defrag.8.gz
 %config %{_sysconfdir}/myisam_defrag.conf
 
 %changelog
 
-* Thu Sep 28 2010 David Busby <d.busby@saiweb.co.uk> - 0.2
+* Fri Jan 27 2012 David Busby <oneiroi@fedoraprohect.org> - 0.2-2
+- bugfix #6f4b41b - small tables would be missed due to DATA_LENGTH >= (1024*1024) in initial SQL
+  since changed to (DATA_LENGTH > 0 OR DATA_FREE > 0) to catch recently truncated tables aswell as generally small ones.
+
+* Thu Sep 28 2010 David Busby <d.busby@saiweb.co.uk> - 0.2-1
 - Initial verison for packaging, 0.1 was never officialy tagged
 
 
