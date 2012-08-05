@@ -41,7 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'myisam_maintenance'
-copyright = u'2010,2011, David Busby <d.busby@saiweb.co.uk> Licensed under GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.'
+copyright = u'2010,2011, David Busby <oneiroi@fedoraproject.org> Licensed under GNU v3 + part 5d section 7: Redistribution/Reuse of this code is permitted under the GNU v3 license, as an additional term ALL code must carry the original Author(s) credit in comment form.'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -179,7 +179,7 @@ htmlhelp_basename = 'myisam_maintenancedoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'myisam_maintenance.tex', u'myisam\\_maintenance Documentation',
-   u'David Busby \\textless{}d.busby@saiweb.co.uk\\textgreater{}', 'manual'),
+   u'David Busby \\textless{}oneiroi@fedoraproject.org\\textgreater{}', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -211,7 +211,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('myisam_defrag', 'myisam_defrag', u'enumerate and defragment myISAM engine mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8),
-    ('myisam_defrag.conf', 'myisam_defrag.conf', u'configuration file for myisam_defrag.py',[u'David Busby <d.busby@saiweb.co.uk>'], 7),
-    ('index_rebuild', 'index_rebuild', u'enumerate and rebuild indexs on mySQL tables',[u'David Busby <d.busby@saiweb.co.uk>'], 8)
+    ('myisam_defrag', 'myisam_defrag', u'enumerate and defragment myISAM engine mySQL tables',[u'David Busby <oneiroi@fedoraproject.org>'], 8),
+    ('myisam_defrag.conf', 'myisam_defrag.conf', u'configuration file for myisam_defrag.py',[u'David Busby <oneiroi@fedoraproject.org>'], 7),
+    ('index_rebuild', 'index_rebuild', u'enumerate and rebuild indexs on mySQL tables',[u'David Busby <oneiroi@fedoraproject.org>'], 8)
 ]

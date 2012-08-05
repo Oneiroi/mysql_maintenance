@@ -1,4 +1,4 @@
-.. sectionauthor:: David Busby <d.busby@saiweb.co.uk>
+.. sectionauthor:: David Busby <oneiroi@fedoraproject.org>
 .. _myisam_defrag:
 
 myisam_defrag
