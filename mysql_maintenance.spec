@@ -10,6 +10,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
 Requires: python,MySQL-python
+BuildRequires: python-sphinx
 Provides: myisam_defrag
 
 %description
@@ -21,6 +22,9 @@ Provides tools to aid in the maintenance of MySQL servers.
 %setup -q
 
 %build
+
+cd $RPM_BUILD_DIR/%{name}-%{version}/docs/
+
 
 %install
 [[ -d "$RPM_BUILD_ROOT" ]] && rm -rf $RPM_BUILD_ROOT
