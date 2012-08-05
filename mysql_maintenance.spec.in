@@ -1,6 +1,6 @@
 Name: mysql_maintenance
-Version: 0.2
-Release: 2%{?dist}
+Version: @VERSION@
+Release: %{?dist}
 Summary: mySQL maintenance tools.
 Group: Applications/System
 License: GNU v3
